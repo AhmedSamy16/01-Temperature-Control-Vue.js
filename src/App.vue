@@ -1,0 +1,108 @@
+<script lang="ts">
+  export default {
+    name: 'temp-control',
+    data() {
+      return {
+        temp: 10,
+        style: 'cold'
+      }
+    },
+    methods: {
+      increase() {
+        if (this.temp === 30) return
+        this.temp++
+        if (this.temp >= 15) this.style = 'hot'
+      },
+      decrease() {
+        if (this.temp === 0) return
+        this.temp--
+        if (this.temp < 15) this.style = 'cold'
+      }
+    }
+  }
+</script>
+
+<template>
+  <div class="app-container">
+    <div class="temperature-display-container">
+      <div class="temperature-display" :class="style">{{ temp }}°C</div>
+    </div>
+    <div class="button-container">
+      <button @click="increase">+</button>
+      <button @click="decrease">-</button>
+    </div>
+  </div>
+</template>
+
+<style>
+  body {
+    font-family: sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .app-container {
+    height: 400px;
+    width: 300px;
+    background: #2b5870;
+    border-radius: 20px;
+    box-shadow: 10px 10px 38px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  .temperature-display-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+  }
+
+  .temperature-display {
+    display: flex;
+    border-radius: 50%;
+    color: #ffffff;
+    height: 220px;
+    width: 220px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    border: 3px #ffffff solid;
+    transition: background 0.5s;
+  }
+
+  button {
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+    font-size: 32px;
+    color: #ffffff;
+    background: rgb(105, 104, 104);
+    border: 2px #ffffff solid;
+  }
+
+  button:hover {
+    background: rgb(184, 184, 184);
+    cursor: pointer;
+  }
+
+  button:focus {
+    outline: 0;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .cold {
+    background: #035aa6;
+  }
+
+  .hot {
+    background: #ff5200;
+  }
+</style>
